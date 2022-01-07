@@ -1,7 +1,7 @@
 
 # CurriculumText
 
-CurriculumText is an experimental implementation of (FastText)[https://fasttext.cc/]
+CurriculumText is an experimental implementation of [FastText](https://fasttext.cc/)
 that allows training with curriculum learning. The code implements a few basic 
 difficulty measures and training schedulers to boost performance on most text classification 
 tasks. 
