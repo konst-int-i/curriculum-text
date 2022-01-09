@@ -6,7 +6,7 @@ from tensorflow import keras
 from curriculum_text.preprocess import preprocess_text, encode_text_to_sequence
 import tensorflow as tf
 import logging
-from fasttext_custom import FastText
+from curriculum_text.fasttext_custom import FastText
 from datetime import datetime
 from box import Box
 from typing import *

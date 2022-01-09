@@ -1,12 +1,14 @@
 import os
-from curriculum_text.experiment import Experiment
-from curriculum_text.utils import *
-import pandas as pd
-from box import Box
-from datetime import datetime
-from numpy.random import seed
 import random as python_random
+from datetime import datetime
+from pathlib import Path
+
+import pandas as pd
 import tensorflow as tf
+from box import Box
+from numpy.random import seed
+
+from curriculum_text.experiment import Experiment
 
 
 class Pipeline(object):
@@ -103,9 +105,3 @@ class Pipeline(object):
         seed(s)
         python_random.seed(s)
         tf.random.set_seed(s)
-
-
-if __name__ == "__main__":
-    config = read_config("config.yml")
-    pipe = Pipeline(config)
-    pipe.run(full=True)
