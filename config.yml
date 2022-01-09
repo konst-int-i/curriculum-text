@@ -1,13 +1,23 @@
 use_cache: False
-debug: True
+debug: False
+log_dir: data/logs
+cache_dir: data/cache
+seed: 1
 
 params:
   lr: 0.01
   clipnorm: 0.001
   ngram_range: 1 # 2 for bi-grams (takes a lot longer to train)
-  batch_size: 1024
-  max_features: 200000
+  batches: 70
+  max_features: 20000
   maxlen: 100 # max length of document
-  embedding_dims: 50 # dimensions of embedding
-  epochs: 10
+  embedding_dims: 10 # dimensions of embedding
+  epochs: 15
+  early_stopping_patience: 3 #
 
+
+curriculum:
+  sample: pass
+
+train_scheduler:
+  sample: pass
