@@ -11,7 +11,7 @@ tasks.
 Requirements:
 
 - Install Anaconda
-- Run `conda env create -f environment.yml`
+- Run `conda env create -f environment.yml` and `conda activate curriculum` on completion
 - Download the [Glove 50B vectors](https://nlp.stanford.edu/data/glove.6B.zip) and save & extract them in the `data/` directory
 
 
