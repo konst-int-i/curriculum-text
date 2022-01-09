@@ -1,3 +1,9 @@
+"""
+Implementation of n-gram features for fasttext
+Note: Taken from udacity keras ``imdb_fasttext`` examples
+"""
+
+
 def create_ngram_set(input_list, ngram_value=2):
     """
     Extract a set of n-grams from a list of integers.
@@ -28,7 +34,7 @@ def add_ngram(sequences, token_indices, ngram_range=2):
         new_list = input_list[:]
         for ngram_value in range(2, ngram_range + 1):
             for i in range(len(new_list) - ngram_value + 1):
-                ngram = tuple(new_list[i:i + ngram_value])
+                ngram = tuple(new_list[i : i + ngram_value])
                 if ngram in token_indices:
                     new_list.append(token_indices[ngram])
         new_sequences.append(new_list)
