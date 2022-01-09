@@ -6,6 +6,7 @@ from typing import List, Tuple
 import nltk
 import numpy as np
 from keras.preprocessing.text import Tokenizer
+from nltk.stem import WordNetLemmatizer
 
 
 def preprocess_text(data: List[str]) -> List[str]:
@@ -18,25 +19,34 @@ def preprocess_text(data: List[str]) -> List[str]:
         List[str]: cleaned samples in the same order
     """
     logging.info("Preprocessing text...")
-    quotes = re.compile(r'(writes in|writes:|wrote:|says:|said:|^In article|^Quoted from|^\||^>)')
+    quotes = re.compile(
+        r"(writes in|writes:|wrote:|says:|said:|^In article|^Quoted from|^\||^>)"
+    )
     # Create a stemmer/lemmatizer
-    stemmer = nltk.stem.SnowballStemmer('english')
+    lemmatizer = WordNetLemmatizer()
     for i in range(len(data)):
         if i % 10000 == 0:
             logging.info(f"Processing sample {i}/{len(data)}...")
         # Remove quotes
-        data[i] = '\n'.join([line for line in data[i].split('\n') if not quotes.search(line)])
+        data[i] = "\n".join(
+            [line for line in data[i].split("\n") if not quotes.search(line)]
+        )
         # Remove punctuation (!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)
-        data[i] = data[i].translate(str.maketrans('', '', string.punctuation))
+        data[i] = data[i].translate(str.maketrans("", "", string.punctuation))
         # Remove digits
-        data[i] = re.sub('\d', '', data[i])
-        # Stem words
-        data[i] = ' '.join([stemmer.stem(word) for word in data[i].split()])
+        data[i] = re.sub("\d", "", data[i])
+        # Lemmatize words
+        data[i] = " ".join(
+            [lemmatizer.lemmatize(word) for word in data[i].split()]
+        ).lower()
+
     # Return data
     return data
 
 
-def encode_text_to_sequence(train: List[str], test: List[str], num_words: int = 10000) -> Tuple[List, List]:
+def encode_text_to_sequence(
+    train: List[str], test: List[str], num_words: int = 10000
+) -> Tuple[List, List]:
     """
     Tokenizes words
     Args:
@@ -65,7 +75,7 @@ def _increment_and_separate(data: List[List[int]]):
     """
     for i in range(len(data)):
         # increment all elems by one
-        data[i] = [idx+1 for idx in data[i]]
+        data[i] = [idx + 1 for idx in data[i]]
         # insert separator as first element
         data[i].insert(0, 1)
     return data
