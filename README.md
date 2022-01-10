@@ -37,9 +37,8 @@ into the format presented in the final report.
 
 `CurriculumText` extends `FastText` by implementing easy CurriculumLearning through two key components: 
 
-1. **DifficultyMeasurer**: Class containing multiple measures of sample difficulty for text classification 
-2. **TrainingScheduler**: 
-
+1. **DifficultyMeasurer**: What is a difficult document?  
+2. **TrainingScheduler**: What degree of difficulty should the model be presented with at which stage during training?
 
 ### Difficulty Measures
 
@@ -60,8 +59,10 @@ complexity.
 Training schedules are implemented in the `TraininScheduler` class in `curriculum/scheduler.py`.
 
 a) `.train_full()`: Regular training loop, shuffling samples after each epoch
+
 b) `.train_baby_step()`: Progressively increasing sample difficulty through training epochs, with last 5 epochs training
 on full data
+
 c) `.train_bin_shuffle()`: Divides samples into equal-size bins ordered by difficulty. Bin order does not change across
 epochs, but samples are shuffled within bins
 
