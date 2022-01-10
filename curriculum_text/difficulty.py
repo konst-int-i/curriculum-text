@@ -9,7 +9,7 @@ import logging
 from scipy import spatial
 
 
-class DifficultyMeasurer(object):
+class DifficultyMeasure(object):
     def __init__(self, config: Box, train_df: pd.DataFrame, label_desc: List):
         self.config = config
         self.train_df = train_df

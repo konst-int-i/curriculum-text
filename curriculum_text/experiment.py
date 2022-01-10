@@ -15,7 +15,7 @@ from curriculum_text.ngram import create_ngram_set, add_ngram
 from datasets import load_dataset
 from curriculum_text.utils import read_cache, write_training_split, read_config, Timer
 from curriculum_text.scheduler import TrainingScheduler
-from curriculum_text.difficulty import DifficultyMeasurer
+from curriculum_text.difficulty import DifficultyMeasure
 from pathlib import Path
 
 pd.options.mode.chained_assignment = None
@@ -266,7 +266,7 @@ class Experiment(object):
             train_df = train_df.sample(frac=1, random_state=self.config.seed)
             return train_df["text"].to_numpy(), train_df["label"].to_numpy()
 
-        measure = DifficultyMeasurer(self.config, train_df, self.label_desc)
+        measure = DifficultyMeasure(self.config, train_df, self.label_desc)
 
         measure_dict = {
             "length": measure.length,
