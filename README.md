@@ -6,6 +6,8 @@ that allows training with curriculum learning. The code implements a few basic
 difficulty measures and training schedulers to boost performance on most text classification 
 tasks. 
 
+Used for the "Machine Learning for Language Processing" assignment at the University of Cambridge. 
+
 ## Setup
 
 Requirements:
